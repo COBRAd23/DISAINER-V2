@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DISAINER — Diseñar es decidir</title>
+  <meta name="description" content="DISAINER. Estudio creativo de diseño, branding y experiencias visuales disruptivas. Diseñar es decidir.">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Canvas Three.js — toda la experiencia 3D vive acá -->
+  <canvas id="webgl"></canvas>
+
+  <!-- Fallback para móviles sin WebGL -->
+  <div class="mobile-fallback" style="background-image: url('assets/img/home header hero.webp')"></div>
+
+  <!-- UI HTML superpuesta al canvas -->
+  <div id="ui">
+
+    <!-- PRELOADER — Pantalla negra absoluta con línea luminosa (La Nada) -->
+    <div id="preloader">
+      <div id="preloader-content">
+        <div id="preloader-line-container">
+          <div id="preloader-line"></div>
+        </div>
+        <p id="preloader-text">INICIANDO EL PORTAL</p>
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN — Siempre hamburguesa, siempre en la esquina -->
+    <nav id="nav">
+      <div id="nav-logo">DISAINER</div>
+      <button id="nav-hamburger" aria-label="Abrir Menú" aria-expanded="false">
+        <span class="hamburger-line top"></span>
+        <span class="hamburger-line bottom"></span>
+      </button>
+    </nav>
+
+    <!-- MENÚ FULLSCREEN OVERLAY — estilo editorial premium -->
+    <div id="menu-overlay" class="menu-overlay" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+      <div class="menu-content">
+        <ul class="menu-links">
+          <li>
+            <a href="#" data-scene="0" id="menu-home">
+              <span class="menu-num">01</span>
+              <span class="menu-label">HOME</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-scene="1" id="menu-filosofia">
+              <span class="menu-num">02</span>
+              <span class="menu-label">FILOSOFÍA</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-scene="2" id="menu-servicios">
+              <span class="menu-num">03</span>
+              <span class="menu-label">SERVICIOS</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-scene="3" id="menu-portfolio">
+              <span class="menu-num">04</span>
+              <span class="menu-label">PORTFOLIO</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-scene="4" id="menu-contacto">
+              <span class="menu-num">05</span>
+              <span class="menu-label">CONTACTO</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="menu-side-info">
+          <p class="menu-studio">COBRA DISEÑO ESTUDIO</p>
+          <a href="mailto:hola@disainer.xyz" class="menu-email">hola@disainer.xyz</a>
+          <div class="menu-socials">
+            <a href="#">IG</a>
+            <a href="#">LI</a>
+            <a href="#">BE</a>
+          </div>
+        </div>
+      </div>
+      <div class="menu-footer-line">
+        <span>© 2026 DISAINER — COBRA DISEÑO ESTUDIO</span>
+        <span>DISEÑAR ES DECIDIR</span>
+      </div>
+    </div>
+
+    <!-- HINT DE SCROLL -->
+    <div id="scroll-hint" aria-hidden="true">
+      <span>SCROLL</span>
+      <div id="scroll-line"></div>
+    </div>
+
+    <!-- CONTENIDO HTML SUPERPUESTO (SEO + interactividad) -->
+    <div id="content">
+
+      <!-- ──────────────────────────────────────────── -->
+      <!-- ESCENA 0: HOME                               -->
+      <!-- ──────────────────────────────────────────── -->
+      <section class="scene-content hero-content active" data-scene="0" aria-label="Inicio">
+        <!-- Bloque de texto e izquierda — separado del portal 3D -->
+        <div class="hero-left">
+          <div class="hero-portal-container">
+            <div class="hero-portal-text">
+              <div class="portal-line">DISEÑAR</div>
+              <div class="portal-line">ES</div>
+              <div class="portal-line">DECIDIR</div>
+            </div>
+          </div>
+          <p class="hero-tagline">COBRA DISEÑO ESTUDIO · BUENOS AIRES</p>
+          <div class="hero-cta">
+            <button class="btn btn-outline" id="cta-contacto">HABLEMOS AHORA</button>
+            <button class="btn btn-primary" id="cta-portfolio">VER TRABAJOS →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────── -->
+      <!-- ESCENA 1: FILOSOFÍA                          -->
+      <!-- ──────────────────────────────────────────── -->
+      <section class="scene-content philosophy-content" data-scene="1" aria-label="Filosofía">
+        <div class="philosophy-container">
+          <!-- Espacio izquierdo para el busto partido 3D flotante -->
+          <div class="philosophy-empty-left" aria-hidden="true"></div>
+          <!-- Bloque de texto derecho -->
+          <div class="philosophy-text-block">
+            <span class="section-number">02</span>
+            <h2 class="section-title">MI FILOSOFÍA</h2>
+            <div class="philosophy-text-glow">
+              <p id="decoder-text"
+                 data-text="Diseñar es decidir. Cada trazo es una postura, cada vacío un manifiesto. No creamos formas — revelamos verdades a través del caos. Arte disruptivo con precisión absoluta, cruzando el portal del diseño tradicional hacia el futuro de la comunicación visual.">
+              </p>
+            </div>
+            <a href="#" class="philosophy-cta" onclick="window.dispatchEvent(new CustomEvent('navigateTo',{detail:2})); return false;">
+              CONOCER SERVICIOS →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────── -->
+      <!-- ESCENA 2: SERVICIOS                          -->
+      <!-- ──────────────────────────────────────────── -->
+      <section class="scene-content services-content" data-scene="2" aria-label="Servicios">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">SERVICIOS</h2>
+          <p class="section-subtitle">DISEÑO INTEGRAL CON ENFOQUE DISRUPTIVO</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">✦</div>
+            <h3>DIRECCIÓN CREATIVA</h3>
+            <p>Conceptualización y visión estratégica para proyectos que desafían lo convencional.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">▲</div>
+            <h3>BRANDING</h3>
+            <p>Identidades visuales memorables y disruptivas con alma e historia propia.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">■</div>
+            <h3>VISUALES 3D</h3>
+            <p>Modelado 3D, arte digital y experiencias sensoriales de alto impacto visual.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">◆</div>
+            <h3>DESARROLLO WEB</h3>
+            <p>Código a medida, animaciones de alto rendimiento e interfaces inmersivas.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────── -->
+      <!-- ESCENA 3: PORTFOLIO                          -->
+      <!-- ──────────────────────────────────────────── -->
+      <section class="scene-content portfolio-content" data-scene="3" aria-label="Portfolio">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">PORTFOLIO</h2>
+          <p class="section-subtitle">PROYECTOS SELECCIONADOS</p>
+        </div>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-card">
+            <img src="assets/img/portfolio/ales/1.webp" alt="Ales — Identidad Visual" loading="lazy"/>
+            <div class="portfolio-info">
+              <h3>ALES</h3>
+              <span>Identidad &amp; Dirección Creativa</span>
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <img src="assets/img/portfolio/daab/01.webp" alt="Daab — Diseño Web" loading="lazy"/>
+            <div class="portfolio-info">
+              <h3>DAAB</h3>
+              <span>Diseño Web &amp; Branding</span>
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <img src="assets/img/portfolio/elnuevomucamo/01.webp" alt="El Nuevo Mucamo — Visual Art" loading="lazy"/>
+            <div class="portfolio-info">
+              <h3>EL NUEVO MUCAMO</h3>
+              <span>Visual Art &amp; E-commerce</span>
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <img src="assets/img/portfolio/kamala/01.webp" alt="Kamala" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+            <div class="portfolio-info">
+              <h3>KAMALA</h3>
+              <span>Branding &amp; Packaging</span>
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <img src="assets/img/portfolio/hierronegro/01.webp" alt="Hierro Negro" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+            <div class="portfolio-info">
+              <h3>HIERRO NEGRO</h3>
+              <span>Identidad Visual</span>
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <img src="assets/img/portfolio/laurel/01.webp" alt="Laurel" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+            <div class="portfolio-info">
+              <h3>LAUREL</h3>
+              <span>Diseño Editorial</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────────── -->
+      <!-- ESCENA 4: CONTACTO                           -->
+      <!-- ──────────────────────────────────────────── -->
+      <section class="scene-content contact-content" data-scene="4" aria-label="Contacto">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2 class="section-title">¿TIENES UNA IDEA?</h2>
+          <p class="section-subtitle">CRUZANDO EL PORTAL JUNTOS</p>
+        </div>
+
+        <div class="contact-box">
+          <a href="mailto:hola@disainer.xyz" class="contact-email">hola@disainer.xyz</a>
+          <p class="contact-desc">Escribinos para iniciar un viaje creativo que cambie todo.</p>
+
+          <div class="contact-links">
+            <a href="https://wa.me/5491100000000" class="contact-link-btn" target="_blank" rel="noopener">
+              WHATSAPP →
+            </a>
+          </div>
+
+          <div class="contact-socials">
+            <a href="#" aria-label="Instagram">INSTAGRAM</a>
+            <a href="#" aria-label="LinkedIn">LINKEDIN</a>
+            <a href="#" aria-label="Behance">BEHANCE</a>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /content -->
+
+  </div><!-- /ui -->
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
